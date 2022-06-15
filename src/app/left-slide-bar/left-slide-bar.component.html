@@ -1,0 +1,169 @@
+<div id="wrapper" [hidden]="!isLoggedIn">
+    <div class="left side-menu">
+        <div class="slimscroll-menu" id="remove-scroll">
+            <div id="sidebar-menu">
+                <ul class="metismenu" id="side-menu">
+                    <li class="menu-title">Menu</li>
+                    <li [hidden]="showModeratorBoard">
+                        <a class="waves-effect" style="text-decoration: none;" routerLink="/dashboard">
+                            <mat-icon>palette</mat-icon> <span> Tableau de bord</span>
+                        </a>
+                    </li>
+                    <li > <!--[hidden]="showAdminBoard"-->
+                        <a class="waves-effect" style="text-decoration: none;" routerLink="/account">
+                            <mat-icon>people</mat-icon>
+                            <span> utilisateurs </span>
+                        </a>
+                    </li>
+
+                    <li  > <!--[hidden]="showAdminBoard"-->
+                        <a class="waves-effect" style="text-decoration: none;" >
+                            <mat-icon>domain</mat-icon>
+                            <span>Entreprise Management </span>
+                        </a>
+
+                        <ul class="submenu">
+                            <li>
+                                <a class="waves-effect" style="text-decoration: none;" routerLink="/company">
+                                    <span> Activity types </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="waves-effect" style="text-decoration: none;" routerLink="/groupe">
+
+                                    <span> Group</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="waves-effect" style="text-decoration: none;" routerLink="/enterprise">
+                                    <span>Enterprise </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li [hidden]="showModeratorBoard"><a class="waves-effect" style="text-decoration: none;" routerLink="/tags" >
+                            <mat-icon> local_offer</mat-icon>
+                            <span>Tags </span>
+                        </a></li>
+                    <li [hidden]="showModeratorBoard"><a class="waves-effect" style="text-decoration: none;" routerLink="/language">
+                            <mat-icon>language</mat-icon>
+                            <span> Language </span>
+                        </a></li>
+                    <li [hidden]="showModeratorBoard">
+                        <a class="waves-effect" style="text-decoration: none;">
+                            <mat-icon>more_vert</mat-icon>
+                            <span> Management </span>
+                        </a>
+                        <ul [hidden]="showModeratorBoard" class="submenu"> 
+                            <li><a class="waves-effect" style="text-decoration: none;"
+                                routerLink="/category"><span>Category</span></a></li>
+                            <li><a class="waves-effect" style="text-decoration: none;"
+                                    routerLink="/products"><span>Products</span></a></li>
+                        </ul>
+                    </li>
+                    <li [hidden]="showModeratorBoard">
+                        <a class="waves-effect">
+                            <mat-icon>settings</mat-icon>
+                            <span> Web Positionnement<span class="float-right menu-arrow"><i
+                                        class="mdi mdi-chevron-right"></i></span> </span>
+                        </a>
+                        <ul [hidden]="showModeratorBoard" class="submenu">
+                            <li><a style="text-decoration: none;" routerLink="/possupport">Support</a></li>
+                            <li><a style="text-decoration: none;" routerLink="/Poscontacts">Contacts</a></li>
+                            <li><a style="text-decoration: none;" routerLink="/poshome">Home</a></li>
+                            <li><a style="text-decoration: none;" routerLink="/poswhoarewe">Who we are </a></li>
+                            <li><a style="text-decoration: none;" routerLink="/posusefulllinks">Usefull Links</a>
+                            </li>
+                            <li><a style="text-decoration: none;" routerLink="/poscookies">cookies</a></li>
+                            <li><a style="text-decoration: none;" routerLink="/posprivacy">Privacy Policy</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li [hidden]="showModeratorBoard">
+                        <a style="text-decoration: none;" routerLink="/configurations" class="waves-effect">
+                            <mat-icon>build</mat-icon><span> General Configuration </span>
+                        </a>
+                    </li>
+
+                    <li [hidden]="showModeratorBoard" >
+                        <a style="text-decoration: none;" href="javascript:void(0);" class="waves-effect">
+                            <mat-icon>home</mat-icon>
+                            <span> Acceuil <span class="float-right menu-arrow"><i
+                                        class="mdi mdi-chevron-right"></i></span> </span>
+                        </a>
+                        <ul  [hidden]="showModeratorBoard" class="submenu">
+                            <li><a style="text-decoration: none;" routerLink="/homeprimaryslide">Diapositive</a></li>
+                            <li><a style="text-decoration: none;" routerLink="/homewelcometext">Welcome section</a></li>
+                            <li><a style="text-decoration: none;" routerLink="/homenewslist"> News section</a></li>
+                            <li><a style="text-decoration: none;" routerLink="/homecustomerlogos">Reference</a></li>
+                        </ul>
+                    </li>
+                    <li [hidden]="showModeratorBoard" > <a style="text-decoration: none;" routerLink="/whoarewe" class="waves-effect">
+                            <mat-icon>help</mat-icon>
+                            <span> Who we are </span>
+                        </a>
+                    </li>
+                    <li [hidden]="showModeratorBoard" >
+                        <a style="text-decoration: none;" routerLink="/assistance" class="waves-effect">
+                            <mat-icon>headset</mat-icon><span> Assistance </span>
+                        </a>
+                    </li>
+                    <li [hidden]="showModeratorBoard" >
+                        <a style="text-decoration: none;" routerLink="/revendeurs" class="waves-effect">
+                            <mat-icon>group</mat-icon><span> Revendeurs</span>
+                        </a>
+                    </li>
+                    <li [hidden]="showModeratorBoard" >
+                        <a style="text-decoration: none;" routerLink="/support" class="waves-effect">
+                            <mat-icon> forum</mat-icon><span> Contacts </span>
+                        </a>
+                    </li>
+                    <li [hidden]="showModeratorBoard" >
+                        <a style="text-decoration: none;" routerLink="/usefullinks" class="waves-effect">
+                            <mat-icon>link</mat-icon><span> Usefull Links </span>
+                        </a>
+                    </li>
+                    <!--<li>
+                        <a style="text-decoration: none;" routerLink="/database" class="waves-effect">
+                            <mat-icon>sync</mat-icon> <span> Database </span>
+                        </a>
+                    </li>--->
+                 
+                    <li [hidden]="showModeratorBoard" >
+                        <a style="text-decoration: none;" routerLink="/cookies" class="waves-effect">
+                            <mat-icon>settings_input_svideo</mat-icon>
+                            <span> Cookies </span>
+                        </a>
+                    </li>
+                    <li [hidden]="showModeratorBoard" >
+                        <a style="text-decoration: none;" routerLink="/privacypolicy" class="waves-effect">
+                            <mat-icon>filter_frames</mat-icon>
+                            <span> Privacy Policy </span>
+                        </a>
+                    </li>
+                    <li [hidden]="showModeratorBoard" >
+                        <a style="text-decoration: none;" href="javascript:void(0);" class="waves-effect"><i
+                                class="icon-paper-sheet"></i><span> Espace Client <span
+                                    class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span>
+                            </span></a>
+                        <ul [hidden]="showModeratorBoard"  class="submenu">
+                            <li><a style="text-decoration: none;" href="#">Mises à jour</a></li>
+                            <li><a style="text-decoration: none;" href="#">FAQ</a></li>
+
+
+
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </div>
+            <!-- Sidebar -->
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Sidebar -left -->

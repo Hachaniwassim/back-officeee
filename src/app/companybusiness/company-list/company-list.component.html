@@ -1,0 +1,63 @@
+<br><br><br>
+<div class="search-div">
+  <button mat-fab color="gray" class="float-right" (click)="onCreateCompany()">
+    <mat-icon color="primary">add</mat-icon>
+  </button>
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div><br><br>
+<div class="table-responsive table-hover">
+  <mat-table [dataSource]="datasource" matSort>
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="margin-Left:10px;"> Description </mat-header-cell>
+      <mat-cell *matCellDef="let element" style="margin-Left:10px;"> {{element.description}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="domainename">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="margin-Left:10px;">Domaine Name </mat-header-cell>
+      <mat-cell *matCellDef="let element" style="margin-Left:10px;">{{element.domainename}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="createdDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Created At</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.createdDate | date:'medium'}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="lastModifiedDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Last Modified At</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.lastModifiedDate | date:'medium'}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let row">&nbsp;&nbsp;&nbsp;
+        <button mat-icon-button (click)="onEditCompany(row)">
+          <mat-icon color="primary">edit_outline</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="onDeleteCompany(row.id)">
+          <mat-icon>close</mat-icon>
+        </button>
+        <button mat-icon-button (click)="ViewCompany(row)">
+          <mat-icon>list</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="loading">
+      <mat-footer-cell *matFooterCellDef colspan="6">
+        Loading data....
+      </mat-footer-cell>
+    </ng-container>
+    <ng-container matColumnDef="nodata">
+      <mat-footer-cell *matFooterCellDef colspan="6">
+        NO data....
+      </mat-footer-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':datasource!=null}"></mat-footer-row>
+    <mat-footer-row *matFooterRowDef="['nodata']"
+      [ngClass]="{'hide': !(datasource!=null && datasource.data.length==0)}"></mat-footer-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[ 5, 10, 25, 100]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+</div>
+<br>

@@ -1,0 +1,38 @@
+<mat-toolbar>
+  <span>{{companyService.form.controls['id'].value?"Modify Activity ":" Add New Activity"}}</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar><br><br>
+<form [formGroup]="companyService.form" class="normal-form" (submit)="onSubmit()" class="normal-form">
+  <mat-grid-list cols="1" rowHeight="160px">
+    <mat-grid-tile>
+      <div class="controles-container">
+        <input type="hidden" formControlName="id">
+        <mat-form-field style="margin-left: 40px;"> 
+          <textarea matInput 
+          placeholder="Description" 
+          required
+          maxlength="100"
+          formControlName="description" >
+      </textarea>
+          <mat-error *ngIf="companyService.form.controls['description'].errors?.required">this field is mandatory.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field style="margin-left: 40px;">
+          <input formControlName="domainename" matInput placeholder="domainename" required>
+          <mat-error *ngIf="companyService.form.controls['domainename'].errors?.required">this field is mandatory.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </mat-grid-tile>
+   
+    <mat-grid-tile>
+      <div class="button-row">
+          <button mat-raised-button color="primary" type="submit"
+            [disabled]="companyService.form.invalid" (click)="refresh()">  <mat-icon>save </mat-icon>  Save</button>
+            <button mat-raised-button  mat-dialog-close> <mat-icon>close</mat-icon>Cancel</button>
+          <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+      </div>
+  </mat-grid-tile>
+  </mat-grid-list>
+</form>

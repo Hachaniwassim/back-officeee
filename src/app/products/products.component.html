@@ -1,0 +1,93 @@
+
+<div id="wrapper">
+<div class="content-page">
+<div class="content"><br><br>
+  <h4> Add Product</h4><br>
+  <div class="card">
+        <div class="container"> <br>
+          <form [formGroup]="productService.form" class="normal-form" class="normal-form">
+            <mat-form-field appearance="outline">
+              <mat-label> Title *</mat-label>
+              <input matInput formControlName="title">
+              <mat-error *ngIf="productService.form.controls['title'].errors?.required">this field is mandatory.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="margin-left:3px;">
+              <mat-label> Name *</mat-label>
+              <input matInput formControlName="name">
+              <mat-error *ngIf="productService.form.controls['name'].errors?.required">this field is mandatory.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="margin-left: 3px;">
+              <mat-label> Slug *</mat-label>
+              <input matInput formControlName="slug">
+              <mat-error *ngIf="productService.form.controls['slug'].errors?.required">this field is mandatory.
+              </mat-error>
+            </mat-form-field>
+            <div class="form-group">
+              <label> Caracteristiques * </label>
+              <ckeditor formControlName="caracteristique" class="w-10 col-12" [config]='config'></ckeditor>
+            </div>
+            <div class="form-group">
+              <label> Requirements * </label>
+              <ckeditor formControlName="requirements" class="w-10 col-12" [config]='config'></ckeditor>
+            </div>
+            <div class="form-group">
+              <label > Description * </label>
+              <ckeditor formControlName="description" class="w-10 col-12" [config]='config'></ckeditor>
+            </div>
+            <label class="form-label" [style]="isEditeMode ?'display:none':'display:null'"> Tags *</label>
+            <ng-select [style]="isEditeMode ?'display:none':'display:null'" [multiple]="true" bindValue="id" bindLabel="description" (change)="onChangeTag($event)"
+              placeholder="select a Tags">
+              <ng-option *ngFor="let tag of tagsByEntreprise" [value]="tag.id">{{tag.description}}</ng-option>
+            </ng-select>
+            <div class="form-group">
+              <label class="form-label"> Category *</label>
+              <select class="form-control" formControlName="categorieId" (change)="onChangeCategorie($event)"
+                placeholder="category">
+                <option>
+                  select a category
+                </option>
+                <option *ngFor="let category of categoryByEntreprise" [value]="category.id">
+                  {{category.title}}
+                </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <input color="primary" type="file" (change)="onSelectFile($event)" [style]="isEditeMode ?'display:none':'display:null'">
+            </div><br>
+            <button mat-raised-button color="primary" *ngIf="!isEditeMode" [disabled]="productService.form.invalid" (click)="onAddProduct()" class="float-right">
+              <mat-icon>save</mat-icon> Save
+            </button> 
+           <button  *ngIf="isEditeMode"   mat-raised-button color="primary" (click)="onUpdate()" mat-raised-button class="float-right"  ><mat-icon>edit_outline</mat-icon> update </button>&nbsp;&nbsp;
+            <br><br>
+          </form>
+        </div>
+      </div>
+      </div>
+          <div class="content"><br>
+            <h4>Products List</h4><br>
+            <div class="card">
+              <br><br>  
+              <div class="container">
+              <div class="row">
+                <div class="col-xs-6 col-md-3" *ngFor="let product of listPrducts">
+                  <div class="card">
+                    <div class="wrapper">
+                      <img class="card-img-top img-fluid" class="card-img-top" src="{{product.image}}" alt="Card image cap">
+                      </div><br>
+                      <div class="card-body">
+                      <mat-icon>schedule</mat-icon> {{product.createdDate | date:'short'}} <div class="float-right">
+                        <button  (click)="onEdite(product)"  mat-icon-button ><mat-icon>edit_outline</mat-icon></button>&nbsp;&nbsp;
+                        <button mat-icon-button (click)="onDeleteProduct(product.id)"><mat-icon color="warn">close</mat-icon>
+                     </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+
+
+

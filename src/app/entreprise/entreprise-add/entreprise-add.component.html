@@ -1,0 +1,162 @@
+<mat-toolbar>
+  <span>{{entrepriseService.form.controls['id'].value? "Modify Entreprise":"New Entreprise"}}</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button mat-dialog-close (click)="onClose()" tabIndex="-1">
+    <mat-icon>clear</mat-icon>
+  </button>
+</mat-toolbar>
+<form [formGroup]="entrepriseService.form" class="normal-form" (submit)="onSubmit()" class="normal-form">
+  <label>Enterprise Info : </label>
+  <mat-divider></mat-divider><br>
+  <table  table-responsive class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Companyname</mat-label>
+          <input formControlName="companyname" matInput type="text" required>
+          <mat-error *ngIf="entrepriseService.form.controls['companyname'].errors?.required">this field is mandatory.
+          </mat-error>
+        </mat-form-field>
+      </td>
+    <td>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>FiscaleCode</mat-label>
+      <input formControlName="codefiscale" type="number" matInput required>
+      <mat-error *ngIf="entrepriseService.form.controls['codefiscale'].errors?.required">this field is mandatory.
+      </mat-error>
+    </mat-form-field>
+  </td>
+  <td>
+  <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>siretNumber</mat-label>
+      <input formControlName="siretNumber" matInput maxlength="14" minlength="14" required>
+      <mat-error *ngIf="entrepriseService.form.controls['siretNumber'].errors?.required">this field is mandatory.
+      </mat-error>
+    </mat-form-field>
+  </td>
+      <td>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <input formControlName="websiteUrl" matInput placeholder="WebsiteUrl *">
+          <mat-icon matSuffix color="primary">language</mat-icon>
+          <!----<mat-error *ngIf="entrepriseService.form.controls['websiteUrl'].errors?.required">this field is mandatory.
+          </mat-error>-->
+        </mat-form-field>
+      </td> </tr>
+  </table>
+  <p>
+    <td>
+      <mat-form-field class="example-full-width" >
+        <mat-label>Email</mat-label>
+        <input formControlName="email" type="email" matInput required>
+        <mat-error *ngIf="entrepriseService.form.controls['email'].errors?.required">this field is mandatory.
+        </mat-error>
+        <mat-error *ngIf="entrepriseService.form.controls['email'].errors?.email">Invalid email address.</mat-error>
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Adress" maxlength="600" formControlName="adresse" required>
+          </textarea>
+      </mat-form-field></td>
+    <td>
+      <mat-form-field class="example-full-width">
+        <mat-label>Referent</mat-label>
+        <input matInput formControlName="refrente">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field class="example-full-width">
+        <mat-label>CodeBank</mat-label>
+        <input matInput formControlName="codeBank">
+      </mat-form-field>
+    </td>
+  <td>
+      <mat-form-field>
+        <textarea matInput placeholder="Note" maxlength="600" formControlName="note">
+          </textarea>
+      </mat-form-field>
+    </td>
+  </p>
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <input formControlName="phone" type="text" matInput ng2TelInput
+          (countryChange)="onCountryChange($event)" placeholder="Phone *">
+          <mat-icon matSuffix color="primary">mode_edit</mat-icon>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Fax</mat-label>
+          <input formControlName="fax" type="tel" matInput required>
+          <!--<mat-icon matSuffix color="primary">mode_edit</mat-icon>-->
+          <mat-error *ngIf="entrepriseService.form.controls['fax'].errors?.required">this field is mandatory.
+          </mat-error>
+          <mat-error *ngIf="entrepriseService.form.controls['fax'].errors?.minlength">Minimum 8 charactors needed.
+          </mat-error>
+        </mat-form-field>
+      </td>
+      <!----<td><mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Postal Code</mat-label>
+          <input matInput #postalCode maxlength="5" placeholder="Ex. 94105" value="">
+          <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+        </mat-form-field></td>-->
+      <td>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label> Street </mat-label>
+          <input matInput #street formControlName="street" maxNumber="5"   placeholder="Ex. 94105">
+          <mat-hint align="end">{{street.value.length}} / 5</mat-hint>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label> City</mat-label>
+          <input matInput formControlName="city" required>
+          <mat-error *ngIf="entrepriseService.form.controls['city'].errors?.required">this field is mandatory.
+          </mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <label> Group</label>
+        <mat-divider></mat-divider><br>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-select placeholder="groupes list" formControlName="groupeId" required>
+            <mat-option *ngFor="let groupe of groupeServices" [value]="groupe.id">
+              {{groupe.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="entrepriseService.form.controls['groupeId'].errors?.required">this field is mandatory.
+          </mat-error>
+        </mat-form-field>
+      </td>
+      <td>
+        <label>Type of activity</label>
+        <mat-divider></mat-divider><br>
+        <mat-form-field class="example-full-width" >
+          <mat-select placeholder="Type Activity" formControlName="companyBusinessId" required>
+            <mat-option *ngFor="let company of companyServices" [value]="company.id">
+              {{company.description}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="entrepriseService.form.controls['companyBusinessId'].errors?.required">this field is
+            mandatory.
+          </mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+  <div class="button-row" align="center" style="margin-left: 30px;">
+    <button mat-raised-button color="primary" type="submit" [disabled]="entrepriseService.form.invalid"
+      (click)="reloadPage()">&nbsp;&nbsp;
+      <mat-icon>save</mat-icon> Save
+    </button>&nbsp;&nbsp;
+    <button mat-raised-button mat-dialog-close>
+      <mat-icon>close</mat-icon>Cancel
+    </button>&nbsp;&nbsp;
+  </div>
+</form>

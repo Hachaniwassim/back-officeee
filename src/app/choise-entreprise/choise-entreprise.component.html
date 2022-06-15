@@ -1,0 +1,38 @@
+<div class="auth-wrapper" align="center">
+  <div class="auth-content" align="center">
+    <div class="auth-bg">
+      <span class="r"></span>
+      <span class="r s"></span>
+      <span class="r s"></span>
+      <span class="r"></span>
+    </div>
+    <br/><br/>
+    <div class="container">
+      <div class="col-md-12">
+        <div class="card card-container">
+          <img id="profile-img" src="https://www.igesa.it/assets/common/images/logo/1529316041.png"
+            align="center" /><br>
+          <div class="font-18 text-center"> WELCOME BACK
+            <span [ngStyle]="{'color':'blue','font-size.px':22}">{{username}}</span>
+          </div><br>
+          <select class="form-control" name="entreprises" id="entreprise-select" required
+            (change)="onChangeEntreprise($event)">
+            <option> choose Enterprise *</option>
+            <option *ngFor="let entreprise of entreprisesByGroup" [value]="entreprise.id">
+              {{ entreprise.companyname }}
+            </option>
+          </select>
+          <div class="form-group" align="center">
+            <button class="btn btn-primary btn-block" [disabled]="
+                entrepriseChoised && entrepriseChoised != 'selct entreprise'
+                  ? false
+                  : true" (click)="selectEntreprise()">
+              Valid
+            </button>
+          </div>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

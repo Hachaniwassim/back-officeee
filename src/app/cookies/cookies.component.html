@@ -1,0 +1,58 @@
+<br><br><br>
+<div id="wrapper">
+  <div class="content-page">
+    <!-- Start content -->
+    <div class="content">
+      <form class="form p-3" [formGroup]="cookie" id="cookie">
+        <h3>Front office side section title</h3>
+        <mat-progress-bar mode="determinate" value="27"></mat-progress-bar><br><br>
+        <div class="card card-fullheight">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6 col-sm-6">
+                <label>Tilte Front Office *</label><br>
+                <input type="text" formControlName="title" placeholder="title" class="form-control">
+              </div>
+            </div>
+            <div class="row mt-5">
+              <div class="col-md-12 col-sm-12 ">
+                <button mat-flat-button class="float-right" color="primary" (click)="save()">  <mat-icon>save </mat-icon> save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br><br><br>
+        <h3>Cookies text</h3>
+        <mat-progress-bar mode="determinate" value="12"></mat-progress-bar><br><br>
+        <div class="card card-fullheight">
+          <div class="card-body">
+              <div class="col-md-12 col-sm-12 mt-5">
+                <label>Cookies text *</label><br>
+                <ckeditor class="w-100 col-10" formControlName="htmlContent" [config]="config"></ckeditor>
+                </div>
+               <div class="row mt-5" >
+               <div class="col-md-12 col-sm-12 ">
+              <button mat-flat-button class="float-right" color="primary" (click)="save()"><mat-icon>save</mat-icon>save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">(function (w, d) {
+    var loader = function () {
+      var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0];
+      s.src = "https://cdn.iubenda.com/iubenda.js";
+      tag.parentNode.insertBefore(s, tag);
+    };
+    if (w.addEventListener) {
+      w.addEventListener("load", loader, false);
+    } else if (w.attachEvent) {
+      w.attachEvent("onload", loader);
+    } else {
+      w.onload = loader;
+    }
+  })(window, document);</script>

@@ -1,0 +1,47 @@
+
+<mat-toolbar>
+  <span>{{categoryService.form.controls['id'].value?"Modify Category":"New Category"}}</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar><br><br>
+<div class="card"><br><br>
+  <div class="container">
+    <form [formGroup]="categoryService.form" class="normal-form" (submit)="onSubmit()" class="normal-form">
+      <mat-form-field appearance="outline">
+        <mat-label> Title *</mat-label>
+        <input matInput formControlName="title">
+        <mat-error *ngIf="categoryService.form.controls['title'].errors?.required">this field is mandatory.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="margin-left: 3px;">
+        <mat-label> Subtitle *</mat-label>
+        <input matInput formControlName="subtitle">
+        <mat-error *ngIf="categoryService.form.controls['subtitle'].errors?.required">this field is mandatory.
+        </mat-error>
+       </mat-form-field>
+       <mat-form-field appearance="outline" style="margin-left: 3px;">
+        <mat-label> menuimage *</mat-label>
+        <input matInput formControlName="menuimage">
+        <mat-error *ngIf="categoryService.form.controls['menuimage'].errors?.required">this field is mandatory.
+        </mat-error>
+       </mat-form-field>
+       <mat-form-field appearance="outline" style="margin-left: 3px;">
+        <mat-label> bannerimage *</mat-label>
+        <input matInput formControlName="bannerimage">
+        <mat-error *ngIf="categoryService.form.controls['bannerimage'].errors?.required">this field is mandatory.
+        </mat-error>
+       </mat-form-field>
+      <div class="form-group">
+        <label> Description * </label>
+        <ckeditor formControlName="description" class="w-10 col-12" [config]='config'></ckeditor>
+      </div> <div class="form-group">
+        <input   type="file"  color="primary"  (change)="onSelectFile($event)"[type]="categoryService.form.controls['id'].value? 'hidden' : 'file'">
+      </div><br>&nbsp;&nbsp;
+      <div class="controle-container">&nbsp;&nbsp;
+      <button  mat-raised-button color="primary"  [disabled]="categoryService.form.invalid"  class="float-right" type="submit" ><mat-icon>save</mat-icon> Save
+        </button>
+        <br><br>
+    </div>
+    </form>
+  </div>
+</div>
